@@ -6,12 +6,8 @@ BOX_URI = ENV["BOX_URI"] || "https://cloud-images.ubuntu.com/vagrant/raring/curr
 BOX_MEMORY = ENV["BOX_MEMORY"] || "512"
 DOKKU_DOMAIN = ENV["DOKKU_DOMAIN"] || "dokku.me"
 DOKKU_IP = ENV["DOKKU_IP"] || "10.0.0.2"
-PREBUILT_STACK_URL = File.exist?("#{File.dirname(__FILE__)}/stack.tgz") ? 'file:///root/dokku/stack.tgz' : nil
 
 make_cmd = "make install"
-if PREBUILT_STACK_URL
-  make_cmd = "PREBUILT_STACK_URL='#{PREBUILT_STACK_URL}' #{make_cmd}"
-end
 
 Vagrant::configure("2") do |config|
   config.vm.box = BOX_NAME
