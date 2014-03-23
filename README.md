@@ -4,7 +4,7 @@ A Dokku powered mini-Travis-CI.
 
 purpose built for an engineering work-week event. someday it'll grow up into a real thing.
 
-Forked from Dokku and suffering from a muddled identity. Lots of commands rely on Dokku commands and jargon, but with some unstated redefinitions to make things apply in a CI environment.
+Forked from Dokku 0.3.0 and suffering from a muddled identity. Lots of commands rely on Dokku commands and jargon, but with some unstated redefinitions to make things apply in a CI environment.
 
 ## Requirements
 
