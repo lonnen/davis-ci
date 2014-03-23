@@ -1,6 +1,8 @@
 # Davis
 
-A Dokku powered mini-Travis(-CI). A tiny, under-featured CI purpose built for an engineering CTF-alike event.
+A Dokku powered mini-Travis-CI.
+
+purpose built for an engineering work-week event. someday it'll grow up into a real thing.
 
 Forked from Dokku and suffering from a muddled identity. Lots of commands rely on Dokku commands and jargon, but with some unstated redefinitions to make things apply in a CI environment.
 
@@ -30,8 +32,8 @@ Davis is in active development. You can update the deployment step and the build
 
 To update the deploy step (this is updated less frequently):
 
-    $ cd ~/dokku
-    $ git pull origin davis
+    $ cd ~/davis-ci
+    $ git pull origin master
     $ sudo make install
 
 Nothing needs to be restarted. Changes will take effect on the next push.
@@ -120,7 +122,7 @@ The dokku folk might be able to help also, but this fork is starting to deviate 
 ## Components
 
  * [Docker](https://github.com/dotcloud/docker) - Container runtime and manager
- * [Buildstep-davis](https://github.com/lonnen/doozer) - Container construction
+ * [Doozer](https://github.com/lonnen/doozer) - Container construction
  * [pluginhook](https://github.com/progrium/pluginhook) - Shell based plugins and hooks
  * [sshcommand](https://github.com/progrium/sshcommand) - Fixed commands over SSH
 
@@ -128,10 +130,8 @@ Looking to keep codebase as simple and hackable as possible, so try to keep your
 
 ## Things this project won't do
 
- * **Multi-host.** Not a huge leap, but this isn't the project for it. Have a look at [Flynn](https://flynn.io/).
- * **Multitenancy.** It's ready for it, but again, have a look at [Flynn](https://flynn.io/).
- * **Client app.** Given the constraints, running commands remotely via SSH is fine.
- * **Work** For the time being it's being developer for a bespoke environment as part of an ephemeral coding challenge. It might have some interesting ideas, but in many places its tightly bound to some strange assumptions for the contest that will hamper it from being useful to anyone else.
+ * **Build-Slave** With a little work, this could put tarballs in nginx, queue the url, and listen on a queue specific to this build. Build slaves could pop the url from the queue, run the tarball through doozer, and run the tests. Then report the results to the listening queue. It's not there yet, and I'm not sure if it will ever be with Davis.
+ * **Work** For the time being it's being developer for a bespoke environment as part of an ephemeral coding challenge. It might have some interesting ideas, but in many places it is tightly bound to some strange assumptions for the contest that will hamper it from being useful to anyone else.
 
 ## Who shall test the test runner?
 
