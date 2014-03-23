@@ -13,7 +13,7 @@ case "$1" in
     dokku cleanup
     echo "-----> Building $APP ..."
     cat | dokku build $APP
-    echo "-----> Deploying $APP ..."
+    echo "-----> Testing $APP ..."
     dokku deploy $APP
     echo "=====> Tests complete."
     echo
