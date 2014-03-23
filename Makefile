@@ -12,15 +12,10 @@ all:
 
 install: dependencies stack copyfiles plugins version
 
-copyfiles: addman
+copyfiles:
 	cp dokku /usr/local/bin/dokku
 	mkdir -p /var/lib/dokku/plugins
 	cp -r plugins/* /var/lib/dokku/plugins
-
-addman:
-	mkdir -p /usr/local/share/man/man1
-	cp dokku.1 /usr/local/share/man/man1/dokku.1
-	mandb
 
 version:
 	git describe --tags > ${DOKKU_ROOT}/VERSION  2> /dev/null || echo '~${DOKKU_VERSION} ($(shell date -uIminutes))' > ${DOKKU_ROOT}/VERSION
