@@ -35,8 +35,8 @@ case "$1" in
     APP="$2"; IMAGE="app/$APP"; CACHE_DIR="$DOKKU_ROOT/$APP/cache"
 
     # Place the contestent's name inside the container
-    $(docker run -i -a stdin lonnen/buildstep /bin/bash -c "export PLAYER=$APP") > /dev/null
-    $(cat /puzzles/puzzles.tar | docker run -i -a stdin lonnen/buildstep /bin/bash -c "mkdir -p /app && tar -xC /app") > /dev/null
+    id=$(docker run -i -a stdin lonnen/buildstep /bin/bash -c "export PLAYER=$APP") > /dev/null
+    id=$(cat /puzzles/puzzles.tar | docker run -i -a stdin lonnen/buildstep /bin/bash -c "mkdir -p /app && tar -xC /app") > /dev/null
     id=$(cat | docker run -i -a stdin lonnen/buildstep /bin/bash -c "mkdir -p /app/solutions && tar -xC /app/solutions")
     test $(docker wait $id) -eq 0
     docker commit $id $IMAGE > /dev/null
