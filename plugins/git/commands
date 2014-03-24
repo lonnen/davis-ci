@@ -4,10 +4,13 @@ set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
 git_archive_all() {
     APP=$1; REV=$2
     TMP_WORK_DIR=$(mktemp -d)
-    chmod 755 $TMP_WORK_DIR
+    cp -r /puzzles/ $TMP_WORK_DIR
+    SOLUTIONS_WORK_DIR=$TMP_WORK_DIR/solutions
+    mkdir $SOLUTIONS_WORK_DIR
+    chmod 755 $SOLUTIONS_WORK_DIR
     unset GIT_DIR GIT_WORK_TREE
-    git clone $DOKKU_ROOT/$APP $TMP_WORK_DIR > /dev/null
-    pushd $TMP_WORK_DIR > /dev/null
+    git clone $DOKKU_ROOT/$APP $SOLUTIONS_WORK_DIR > /dev/null
+    pushd $SOLUTIONS_WORK_DIR > /dev/null
     git config advice.detachedHead false
     git checkout $REV > /dev/null
     git submodule update --init --recursive > /dev/null
