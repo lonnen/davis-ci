@@ -4,7 +4,7 @@ set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
 git_archive_all() {
     APP=$1; REV=$2
     TMP_WORK_DIR=$(mktemp -d)
-    cp -r /puzzles/ $TMP_WORK_DIR
+    cp -r /puzzles/. $TMP_WORK_DIR
     echo "$APP" > $TMP_WORK_DIR/PLAYER
     SOLUTIONS_WORK_DIR=$TMP_WORK_DIR/solutions
     mkdir $SOLUTIONS_WORK_DIR
