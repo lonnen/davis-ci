@@ -5,7 +5,7 @@ git_archive_all() {
     APP=$1; REV=$2
     TMP_WORK_DIR=$(mktemp -d)
     cp -r /puzzles/ $TMP_WORK_DIR
-    cat $APP > $TMP_WORK_DIR/PLAYER
+    echo "$APP" > $TMP_WORK_DIR/PLAYER
     SOLUTIONS_WORK_DIR=$TMP_WORK_DIR/solutions
     mkdir $SOLUTIONS_WORK_DIR
     chmod 755 $SOLUTIONS_WORK_DIR
@@ -16,6 +16,8 @@ git_archive_all() {
     git checkout $REV > /dev/null
     git submodule update --init --recursive > /dev/null
     find -name .git -prune -exec rm -rf {} \; > /dev/null
+    popd > /dev/null
+    pushd $TMP_WORK_DIR > /dev/null
     tar c .
     popd > /dev/null
     rm -rf $TMP_WORK_DIR > /dev/null
