@@ -75,7 +75,7 @@ case "$1" in
         echo "time's up! pencils down!"
         docker inspect $id &> /dev/null && docker kill $id > /dev/null
     fi
-    echo "tests finished. here's the output:"
+    echo "tests finished. here is the output:"
     docker logs $id
     pluginhook post-deploy $APP $port
     ;;
