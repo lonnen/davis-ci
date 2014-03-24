@@ -5,6 +5,7 @@ git_archive_all() {
     APP=$1; REV=$2
     TMP_WORK_DIR=$(mktemp -d)
     cp -r /puzzles/ $TMP_WORK_DIR
+    cat $APP > $TMP_WORK_DIR/PLAYER
     SOLUTIONS_WORK_DIR=$TMP_WORK_DIR/solutions
     mkdir $SOLUTIONS_WORK_DIR
     chmod 755 $SOLUTIONS_WORK_DIR
