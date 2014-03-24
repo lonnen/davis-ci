@@ -9,12 +9,12 @@ case "$1" in
     fi
 
     APP="$2"; IMAGE="app/$APP";
-    echo "-----> Cleaning up ..."
-    dokku cleanup
     echo "-----> Building $APP ..."
     cat | dokku build $APP
     echo "-----> Testing $APP ..."
     dokku deploy $APP
+    echo "-----> Cleaning up ..."
+    dokku cleanup
     echo "=====> Fin."
     echo
     ;;
@@ -33,8 +33,7 @@ case "$1" in
     fi
 
     APP="$2"; IMAGE="app/$APP"; CACHE_DIR="$DOKKU_ROOT/$APP/cache"
-
-    id=$(docker run -i -a stdin lonnen/buildstep /bin/bash -c "export PLAYER=$APP" && cat /puzzles/puzzles.tar | docker run -i -a stdin lonnen/buildstep /bin/bash -c "mkdir -p /app && tar -xC /app" && cat | docker run -i -a stdin lonnen/buildstep /bin/bash -c "mkdir -p /app/solutions && tar -xC /app/solutions")
+    id=$(cat | docker run -i -a stdin lonnen/buildstep /bin/bash -c "mkdir -p /app && tar -xC /app")
     test $(docker wait $id) -eq 0
     docker commit $id $IMAGE > /dev/null
     [[ -d $CACHE_DIR ]] || mkdir $CACHE_DIR
