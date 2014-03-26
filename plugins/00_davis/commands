@@ -76,7 +76,7 @@ case "$1" in
         docker inspect $id &> /dev/null && docker kill $id > /dev/null
     fi
     echo "tests finished. here is the output:"
-    docker logs $id
+    docker logs $id | cat
     pluginhook post-deploy $APP $port
     ;;
 
